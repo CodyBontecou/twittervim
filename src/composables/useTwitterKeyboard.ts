@@ -254,11 +254,13 @@ export function useTwitterKeyboard(options: TwitterKeyboardOptions = {}) {
     elements.forEach((el) => {
       el.style.outline = ''
       el.style.outlineOffset = ''
+      el.style.boxShadow = ''
     })
 
     // Add focus to the current element
-    element.style.outline = '2px solid #1d9bf0'
-    element.style.outlineOffset = '-2px'
+    element.style.outline = '4px solid #1d9bf0'
+    element.style.outlineOffset = '-4px'
+    element.style.boxShadow = '0 0 0 2px rgba(29, 155, 240, 0.2)'
     element.scrollIntoView({ behavior: 'smooth', block: 'center' })
   }
 
@@ -267,6 +269,7 @@ export function useTwitterKeyboard(options: TwitterKeyboardOptions = {}) {
     elements.forEach((el) => {
       el.style.outline = ''
       el.style.outlineOffset = ''
+      el.style.boxShadow = ''
     })
     currentFocusedTweetIndex.value = 0
   }
