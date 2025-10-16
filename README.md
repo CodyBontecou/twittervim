@@ -1,6 +1,6 @@
-# X Keyboard Navigator
+# Twittervim
 
-Navigate X (formerly Twitter) with lightning-fast keyboard shortcuts. Inspired by Gmail's keyboard navigation, this extension brings powerful vim-style shortcuts to your X experience.
+Navigate X (formerly Twitter) with lightning-fast vim-style keyboard shortcuts. Inspired by Gmail's keyboard navigation and vim text editor, this extension brings powerful keyboard shortcuts to your X experience.
 
 ## Features
 
@@ -121,4 +121,4 @@ Built with [Vitesse WebExt](https://github.com/antfu/vitesse-webext) template by
 
 ## Support
 
-Found a bug or have a feature request? [Open an issue](https://github.com/yourusername/x-keyboard-navigator/issues) on GitHub.
+Found a bug or have a feature request? [Open an issue](https://github.com/codybontecou/twittervim/issues) on GitHub.

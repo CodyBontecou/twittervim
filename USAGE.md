@@ -1,6 +1,6 @@
-# X Keyboard Navigator
+# Twittervim
 
-A Chrome/Firefox web extension that enables complete keyboard navigation for X (formerly Twitter).
+A Chrome/Firefox web extension that enables complete keyboard navigation for X (formerly Twitter) using vim-style shortcuts.
 
 ## Features
 

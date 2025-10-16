@@ -1,10 +1,10 @@
-# Privacy Policy for X Keyboard Navigator
+# Privacy Policy for Twittervim
 
 **Last Updated:** October 16, 2025
 
 ## Introduction
 
-X Keyboard Navigator ("the Extension") is committed to protecting your privacy. This privacy policy explains what data we collect, how we use it, and your rights regarding your information.
+Twittervim ("the Extension") is committed to protecting your privacy. This privacy policy explains what data we collect, how we use it, and your rights regarding your information.
 
 ## Data Collection
 
@@ -85,8 +85,8 @@ You have the right to:
 ## Contact
 
 If you have questions or concerns about this privacy policy or the Extension's data practices, please:
-- Open an issue on our [GitHub repository](https://github.com/yourusername/x-keyboard-navigator/issues)
-- Contact us at: [your-email@example.com]
+- Open an issue on our [GitHub repository](https://github.com/codybontecou/twittervim/issues)
+- Contact us at: cody.bontecou@gmail.com
 
 ## Compliance
 
@@ -98,4 +98,4 @@ This Extension complies with:
 
 ## Summary
 
-In short: **X Keyboard Navigator does not collect, store, or transmit any of your personal data. It operates entirely within your browser to provide keyboard navigation on X/Twitter.**
+In short: **Twittervim does not collect, store, or transmit any of your personal data. It operates entirely within your browser to provide keyboard navigation on X/Twitter.**

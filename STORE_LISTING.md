@@ -1,13 +1,13 @@
 # Chrome Web Store Listing Information
 
-This document contains all the information needed to submit X Keyboard Navigator to the Chrome Web Store.
+This document contains all the information needed to submit Twittervim to the Chrome Web Store.
 
 ## Basic Information
 
-**Extension Name:** X Keyboard Navigator
+**Extension Name:** Twittervim
 
 **Short Description (132 characters max):**
-Navigate X (Twitter) with keyboard shortcuts. Gmail-style navigation, vim shortcuts, and a command palette for power users.
+Navigate X (Twitter) with vim-style keyboard shortcuts. Inspired by vim and Gmail, with a command palette for power users.
 
 **Category:** Productivity
 
@@ -15,7 +15,7 @@ Navigate X (Twitter) with keyboard shortcuts. Gmail-style navigation, vim shortc
 
 ## Detailed Description
 
-Navigate X (formerly Twitter) with lightning-fast keyboard shortcuts. Inspired by Gmail's keyboard navigation, this extension brings powerful vim-style shortcuts to your X experience.
+Navigate X (formerly Twitter) with lightning-fast vim-style keyboard shortcuts. Inspired by the vim text editor and Gmail's keyboard navigation, this extension brings powerful keyboard shortcuts to your X experience.
 
 ### Key Features:
 
@@ -81,7 +81,7 @@ You'll need to create 1-5 screenshots showing:
 
 ### Small Promo Tile
 - Size: 440x280 pixels
-- Shows: Extension icon + "X Keyboard Navigator" text + key feature
+- Shows: Extension icon + "Twittervim" text + key feature
 
 ### Marquee Promo Tile (Featured placement)
 - Size: 1400x560 pixels
@@ -99,11 +99,11 @@ Content: Use the PRIVACY.md file in this repository
 ## Support & Website Links
 
 **Homepage URL:**
-- https://github.com/[yourusername]/x-keyboard-navigator
+- https://github.com/codybontecou/twittervim
 - Or create a dedicated landing page
 
 **Support URL:**
-- https://github.com/[yourusername]/x-keyboard-navigator/issues
+- https://github.com/codybontecou/twittervim/issues
 
 ## Permissions Justification
 
