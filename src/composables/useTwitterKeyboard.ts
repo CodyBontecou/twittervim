@@ -11,6 +11,7 @@ export function useTwitterKeyboard(options: TwitterKeyboardOptions = {}) {
   const keys = useMagicKeys()
   const currentFocusedTweetIndex = ref(0)
   const isComposing = ref(false)
+  const isZenMode = ref(false)
 
   // Navigation key combinations
   const g_h = computed(() => keys.g && keys.h)
@@ -24,7 +25,7 @@ export function useTwitterKeyboard(options: TwitterKeyboardOptions = {}) {
   const g_c = computed(() => keys.g && keys.c)
 
   // Tweet interaction keys
-  const { r, t, l, b, j, k, o, Escape, Meta, Control, Alt, Shift } = keys
+  const { r, t, l, b, j, k, o, z, Escape, Meta, Control, Alt, Shift } = keys
 
   // Helper to check if user is typing in an input
   function isTyping() {
@@ -161,6 +162,12 @@ export function useTwitterKeyboard(options: TwitterKeyboardOptions = {}) {
     }
   })
 
+  whenever(z, () => {
+    if (!isTyping() && !hasModifier()) {
+      toggleZenMode()
+    }
+  })
+
   // Helper functions
   function navigateTo(path: string) {
     const url = `${window.location.origin}${path}`
@@ -189,7 +196,7 @@ export function useTwitterKeyboard(options: TwitterKeyboardOptions = {}) {
   }
 
   function getNavigableElements(): HTMLElement[] {
-    // Get all tweets
+    // Get all tweets (including nested ones like quoted tweets)
     const tweets = Array.from(
       document.querySelectorAll('[data-testid="tweet"]'),
     ) as HTMLElement[]
@@ -251,17 +258,99 @@ export function useTwitterKeyboard(options: TwitterKeyboardOptions = {}) {
   function focusTweet(element: HTMLElement) {
     // Remove focus from all navigable elements
     const elements = getNavigableElements()
-    elements.forEach((el) => {
+    const focusedIndex = elements.indexOf(element)
+
+    elements.forEach((el, index) => {
       el.style.outline = ''
       el.style.outlineOffset = ''
       el.style.boxShadow = ''
+      el.style.transition = 'all 0.3s ease'
+
+      if (isZenMode.value) {
+        // Calculate distance from focused tweet
+        const distance = Math.abs(index - focusedIndex)
+
+        // Apply opacity gradient based on distance
+        if (index === focusedIndex) {
+          // Focused tweet: full opacity, elevated
+          el.style.opacity = '1'
+          el.style.transform = 'scale(1.02)'
+          el.style.zIndex = '100'
+        }
+        else {
+          // Non-focused tweets: fade based on distance
+          const opacity = Math.max(0.2, 1 - distance * 0.25)
+          el.style.opacity = `${opacity}`
+          el.style.transform = 'scale(0.98)'
+          el.style.zIndex = '1'
+        }
+      }
+      else {
+        // Normal mode: reset zen mode styles
+        el.style.opacity = ''
+        el.style.transform = ''
+        el.style.zIndex = ''
+      }
     })
 
     // Add focus to the current element
-    element.style.outline = '4px solid #1d9bf0'
-    element.style.outlineOffset = '-4px'
-    element.style.boxShadow = '0 0 0 2px rgba(29, 155, 240, 0.2)'
-    element.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    if (isZenMode.value) {
+      element.style.outline = '4px solid #1d9bf0'
+      element.style.outlineOffset = '-4px'
+      element.style.boxShadow = '0 0 40px rgba(29, 155, 240, 0.5), 0 20px 60px rgba(0, 0, 0, 0.3)'
+    }
+    else {
+      element.style.outline = '4px solid #1d9bf0'
+      element.style.outlineOffset = '-4px'
+      element.style.boxShadow = '0 0 0 2px rgba(29, 155, 240, 0.2)'
+    }
+
+    // Center the element in the viewport
+    centerElementInViewport(element)
+  }
+
+  function centerElementInViewport(element: HTMLElement) {
+    // Use requestAnimationFrame to ensure DOM has updated
+    requestAnimationFrame(() => {
+      const rect = element.getBoundingClientRect()
+      const viewportHeight = window.innerHeight
+
+      // Check if element is completely off-screen
+      const isOffScreen = rect.bottom < 0 || rect.top > viewportHeight
+
+      if (isOffScreen) {
+        // If completely off-screen, bring it into view immediately
+        element.scrollIntoView({ behavior: 'instant', block: 'center' })
+
+        // Then schedule another centering after a brief moment
+        requestAnimationFrame(() => {
+          const newRect = element.getBoundingClientRect()
+          const elementCenter = newRect.top + newRect.height / 2
+          const viewportCenter = viewportHeight / 2
+          const scrollOffset = elementCenter - viewportCenter
+
+          if (Math.abs(scrollOffset) > 10) {
+            window.scrollBy({
+              top: scrollOffset,
+              behavior: 'smooth',
+            })
+          }
+        })
+      }
+      else {
+        // Element is at least partially visible, center it smoothly
+        const elementCenter = rect.top + rect.height / 2
+        const viewportCenter = viewportHeight / 2
+        const scrollOffset = elementCenter - viewportCenter
+
+        if (Math.abs(scrollOffset) > 10) {
+          window.scrollBy({
+            top: scrollOffset,
+            behavior: 'smooth',
+          })
+        }
+      }
+    })
   }
 
   function removeFocusFromTweet() {
@@ -270,8 +359,31 @@ export function useTwitterKeyboard(options: TwitterKeyboardOptions = {}) {
       el.style.outline = ''
       el.style.outlineOffset = ''
       el.style.boxShadow = ''
+      el.style.opacity = ''
+      el.style.transform = ''
+      el.style.transition = ''
+      el.style.zIndex = ''
     })
     currentFocusedTweetIndex.value = 0
+  }
+
+  function toggleZenMode() {
+    isZenMode.value = !isZenMode.value
+
+    // Re-apply focus styling to refresh zen mode state
+    const elements = getNavigableElements()
+    if (elements.length > 0 && currentFocusedTweetIndex.value < elements.length) {
+      focusTweet(elements[currentFocusedTweetIndex.value])
+    }
+    else {
+      // If no tweet is focused, just clear all styling
+      elements.forEach((el) => {
+        el.style.opacity = ''
+        el.style.transform = ''
+        el.style.transition = ''
+        el.style.zIndex = ''
+      })
+    }
   }
 
   function clickOnFocusedTweet(selector: string) {
@@ -488,13 +600,23 @@ export function useTwitterKeyboard(options: TwitterKeyboardOptions = {}) {
       category: 'tweet' as const,
       action: () => removeFocusFromTweet(),
     },
+    {
+      id: 'zen-mode-toggle',
+      label: 'Toggle Zen Mode',
+      description: 'Toggle zen mode for distraction-free reading',
+      shortcut: 'z',
+      category: 'tweet' as const,
+      action: () => toggleZenMode(),
+    },
   ]
 
   return {
     currentFocusedTweetIndex,
+    isZenMode,
     focusNextTweet,
     focusPreviousTweet,
     removeFocusFromTweet,
+    toggleZenMode,
     commands,
     navigateTo,
     getUsernameFromPage,
