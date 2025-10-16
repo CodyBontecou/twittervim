@@ -1,138 +1,124 @@
-# WebExtension Vite Starter
+# X Keyboard Navigator
 
-A [Vite](https://vitejs.dev/) powered WebExtension ([Chrome](https://developer.chrome.com/docs/extensions/reference/), [FireFox](https://addons.mozilla.org/en-US/developers/), etc.) starter template.
-
-<p align="center">
-<sub>Popup</sub><br/>
-<img width="655" src="https://user-images.githubusercontent.com/11247099/126741643-813b3773-17ff-4281-9737-f319e00feddc.png"><br/>
-<sub>Options Page</sub><br/>
-<img width="655" src="https://user-images.githubusercontent.com/11247099/126741653-43125b62-6578-4452-83a7-bee19be2eaa2.png"><br/>
-<sub>Inject Vue App into the Content Script</sub><br/>
-<img src="https://user-images.githubusercontent.com/11247099/130695439-52418cf0-e186-4085-8e19-23fe808a274e.png">
-</p>
+Navigate X (formerly Twitter) with lightning-fast keyboard shortcuts. Inspired by Gmail's keyboard navigation, this extension brings powerful vim-style shortcuts to your X experience.
 
 ## Features
 
-- ⚡️ **Instant HMR** - use **Vite** on dev (no more refresh!)
-- 🥝 Vue 3 - Composition API, [`<script setup>` syntax](https://github.com/vuejs/rfcs/blob/master/active-rfcs/0040-script-setup.md) and more!
-- 💬 Effortless communications - powered by [`webext-bridge`](https://github.com/antfu/webext-bridge) and [VueUse](https://github.com/antfu/vueuse) storage
-- 🌈 [UnoCSS](https://github.com/unocss/unocss) - The instant on-demand Atomic CSS engine.
-- 🦾 [TypeScript](https://www.typescriptlang.org/) - type safe
-- 📦 [Components auto importing](./src/components)
-- 🌟 [Icons](./src/components) - Access to icons from any iconset directly
-- 🖥 Content Script - Use Vue even in content script
-- 🌍 WebExtension - isomorphic extension for Chrome, Firefox, and others
-- 📃 Dynamic `manifest.json` with full type support
+### Command Palette
+Press `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (Mac) to open the command palette and discover all available commands with fuzzy search.
 
-## Pre-packed
+### Navigation Shortcuts
 
-### WebExtension Libraries
+Navigate anywhere on X with two-key combinations starting with `g`:
 
-- [`webextension-polyfill`](https://github.com/mozilla/webextension-polyfill) - WebExtension browser API Polyfill with types
-- [`webext-bridge`](https://github.com/antfu/webext-bridge) - effortlessly communication between contexts
+| Shortcut | Action |
+|----------|--------|
+| `g` + `h` | Go to Home timeline |
+| `g` + `e` | Go to Explore |
+| `g` + `n` | Go to Notifications |
+| `g` + `m` | Go to Messages |
+| `g` + `k` | Go to Grok AI |
+| `g` + `p` | Go to your Profile |
+| `g` + `l` | Go to your Lists |
+| `g` + `b` | Go to Bookmarks |
+| `g` + `c` | Go to Communities |
 
-### Vite Plugins
+### Tweet Interaction Shortcuts
 
-- [`unplugin-auto-import`](https://github.com/antfu/unplugin-auto-import) - Directly use `browser` and Vue Composition API without importing
-- [`unplugin-vue-components`](https://github.com/antfu/vite-plugin-components) - components auto import
-- [`unplugin-icons`](https://github.com/antfu/unplugin-icons) - icons as components
-  - [Iconify](https://iconify.design) - use icons from any icon sets [🔍Icônes](https://icones.netlify.app/)
+Browse and interact with tweets without touching your mouse:
 
-### Vue Plugins
+| Shortcut | Action |
+|----------|--------|
+| `j` | Focus next tweet |
+| `k` | Focus previous tweet |
+| `r` | Reply to focused tweet |
+| `t` | Retweet focused tweet |
+| `l` | Like focused tweet |
+| `b` | Bookmark focused tweet |
+| `o` | Open focused tweet (detail view) |
+| `Esc` | Remove focus from current tweet |
 
-- [VueUse](https://github.com/antfu/vueuse) - collection of useful composition APIs
+## Installation
 
-### UI Frameworks
+### From Chrome Web Store
+1. Visit the Chrome Web Store (link coming soon)
+2. Click "Add to Chrome"
+3. Start using keyboard shortcuts immediately on X.com
 
-- [UnoCSS](https://github.com/unocss/unocss) - the instant on-demand Atomic CSS engine
-
-### Coding Style
-
-- Use Composition API with [`<script setup>` SFC syntax](https://github.com/vuejs/rfcs/pull/227)
-- [ESLint](https://eslint.org/) with [@antfu/eslint-config](https://github.com/antfu/eslint-config), single quotes, no semi
-
-### Dev tools
-
-- [TypeScript](https://www.typescriptlang.org/)
-- [pnpm](https://pnpm.js.org/) - fast, disk space efficient package manager
-- [esno](https://github.com/antfu/esno) - TypeScript / ESNext node runtime powered by esbuild
-- [npm-run-all](https://github.com/mysticatea/npm-run-all) - Run multiple npm-scripts in parallel or sequential
-- [web-ext](https://github.com/mozilla/web-ext) - Streamlined experience for developing web extensions
-
-## Use the Template
-
-### GitHub Template
-
-[Create a repo from this template on GitHub](https://github.com/antfu/vitesse-webext/generate).
-
-### Clone to local
-
-If you prefer to do it manually with the cleaner git history
-
-> If you don't have pnpm installed, run: npm install -g pnpm
-
-```bash
-npx degit antfu/vitesse-webext my-webext
-cd my-webext
-pnpm i
-```
+### Manual Installation (Development)
+1. Clone this repository
+2. Install dependencies: `pnpm install`
+3. Build the extension: `pnpm build`
+4. Load the `extension/` folder in Chrome:
+   - Navigate to `chrome://extensions`
+   - Enable "Developer mode"
+   - Click "Load unpacked"
+   - Select the `extension/` folder
 
 ## Usage
 
-### Folders
+1. Visit [x.com](https://x.com) or [twitter.com](https://twitter.com)
+2. Start using keyboard shortcuts immediately
+3. Press `Ctrl+Shift+P`/`Cmd+Shift+P` to open the command palette and explore all commands
+4. Use `j`/`k` to navigate tweets, then `r`/`t`/`l`/`b` to interact
 
-- `src` - main source.
-  - `contentScript` - scripts and components to be injected as `content_script`
-  - `background` - scripts for background.
-  - `components` - auto-imported Vue components that are shared in popup and options page.
-  - `styles` - styles shared in popup and options page
-  - `assets` - assets used in Vue components
-  - `manifest.ts` - manifest for the extension.
-- `extension` - extension package root.
-  - `assets` - static assets (mainly for `manifest.json`).
-  - `dist` - built files, also serve stub entry for Vite on development.
-- `scripts` - development and bundling helper scripts.
+## Privacy
 
-### Development
+This extension:
+- **Does NOT collect any data**
+- **Does NOT track your activity**
+- Only runs on X.com and Twitter.com domains
+- Uses local browser storage only for extension preferences
+- Never sends data to external servers
 
+See [PRIVACY.md](./PRIVACY.md) for detailed privacy policy.
+
+## Development
+
+### Tech Stack
+- Vue 3 with Composition API
+- Vite for fast development
+- TypeScript for type safety
+- UnoCSS for styling
+- WebExtension APIs
+
+### Commands
 ```bash
+# Development with HMR
 pnpm dev
-```
 
-Then **load extension in browser with the `extension/` folder**.
-
-For Firefox developers, you can run the following command instead:
-
-```bash
-pnpm dev-firefox
-```
-
-`web-ext` auto reload the extension when `extension/` files changed.
-
-> While Vite handles HMR automatically in the most of the case, [Extensions Reloader](https://chrome.google.com/webstore/detail/fimgfedafeadlieiabdeeaodndnlbhid) is still recommended for cleaner hard reloading.
-
-## Using Gitpod
-
-If you have a web browser, you can get a fully pre-configured development environment with one click:
-
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/antfu/vitesse-webext)
-
-### Build
-
-To build the extension, run
-
-```bash
+# Build for production
 pnpm build
+
+# Package for distribution
+pnpm pack:zip
+
+# Run tests
+pnpm test
+
+# Lint code
+pnpm lint
 ```
 
-And then pack files under `extension`, you can upload `extension.crx` or `extension.xpi` to appropriate extension store.
+## Browser Support
+
+- Chrome/Chromium (Manifest V3)
+- Edge (Chromium-based)
+- Brave
+- Firefox support coming soon
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+MIT License - see LICENSE file for details
 
 ## Credits
 
-[![Volta](https://user-images.githubusercontent.com/904724/195351818-9e826ea9-12a0-4b06-8274-352743cd2047.png)](https://volta.net)
+Built with [Vitesse WebExt](https://github.com/antfu/vitesse-webext) template by [@antfu](https://github.com/antfu).
 
-This template is originally made for the [volta.net](https://volta.net) browser extension.
+## Support
 
-## Variations
-
-This is a variant of [Vitesse](https://github.com/antfu/vitesse), check out the [full variations list](https://github.com/antfu/vitesse#variations).
+Found a bug or have a feature request? [Open an issue](https://github.com/yourusername/x-keyboard-navigator/issues) on GitHub.

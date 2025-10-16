@@ -40,11 +40,12 @@ export async function getManifest() {
       'activeTab',
       'sidePanel',
     ],
-    host_permissions: ['*://*/*'],
+    host_permissions: ['*://twitter.com/*', '*://x.com/*'],
     content_scripts: [
       {
         matches: [
-          '<all_urls>',
+          '*://twitter.com/*',
+          '*://x.com/*',
         ],
         js: [
           'dist/contentScripts/index.global.js',
@@ -54,7 +55,7 @@ export async function getManifest() {
     web_accessible_resources: [
       {
         resources: ['dist/contentScripts/style.css'],
-        matches: ['<all_urls>'],
+        matches: ['*://twitter.com/*', '*://x.com/*'],
       },
     ],
     content_security_policy: {
