@@ -7,6 +7,9 @@ Navigate X (formerly Twitter) with lightning-fast vim-style keyboard shortcuts. 
 ### Command Palette
 Press `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (Mac) to open the command palette and discover all available commands with fuzzy search.
 
+<img width="640" height="400" alt="twitterbinds-command-palette" src="https://github.com/user-attachments/assets/d28c5023-0fad-4eb2-9952-2c5ef2c2e2b0" />
+
+
 ### Navigation Shortcuts
 
 Navigate anywhere on X with two-key combinations starting with `g`:
