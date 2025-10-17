@@ -1,6 +1,6 @@
 # Twittervim
 
-Navigate X (formerly Twitter) with lightning-fast vim-style keyboard shortcuts. Inspired by Gmail's keyboard navigation and vim text editor, this extension brings powerful keyboard shortcuts to your X experience.
+Navigate X with a command palette and vim-style keyboard shortcuts. Inspired by VSCode and Vim, this extension brings powerful keyboard shortcuts to your X experience.
 
 ## Features
 
